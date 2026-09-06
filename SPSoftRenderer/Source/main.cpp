@@ -1,4 +1,6 @@
 #include <windows.h>
+#include "Core/Logger.h"
+#include "Math/Vector2.h"
 
 // 메시지 처리 함수
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -55,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	QueryPerformanceFrequency(&frequency);
 
 	LARGE_INTEGER startTime, endTime;
-	double elapsedTime = 0.0;
+	double elapsedTime = 0.0;	
 
 	// Main Loop (Quit Message가 들어오기 전까지 아래 Loop를 무한히 실행하게 됨)
 	while (bIsExit == false)
