@@ -2,6 +2,8 @@
 #include "Core/Logger.h"
 #include "Graphics/Renderer.h"	
 
+#include <algorithm>
+
 #include "Math/Vector2.h"
 
 // 메시지 처리 함수
@@ -23,6 +25,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+	float a = 0.5f;
+	float b = -0.6f;
+	float c = 1.5f;
+	Logger::Log(std::clamp(a, 0.0f, 1.0f));
+	Logger::Log(std::clamp(b, 0.0f, 1.0f));
+	Logger::Log(std::clamp(c, 0.0f, 1.0f));
+
 	// 윈도우 클래스
 	WCHAR WindowClass[] = L"SPSoftRenderer";
 
@@ -41,9 +50,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	int winWidth = 1024;
 	int winHeight = 1024;
 
+	// 정확하게 winWidth, winHeight 크기의 윈도우 생성
+	RECT rect = {};
+	rect.right = winWidth;
+	rect.bottom = winHeight;
+
+	AdjustWindowRect(
+		&rect,
+		WS_POPUP | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
+		FALSE
+	);
+
 	// 윈도우 생성
 	HWND hWnd = CreateWindowExW(0, WindowClass, Title, WS_POPUP | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, winWidth, winHeight,
+		CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top,
 		nullptr, nullptr, hInstance, nullptr);
 
 	if (hWnd == nullptr)
@@ -52,8 +72,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// 렌더러 생성
-	Renderer renderer(winWidth, winHeight);
-
+	Renderer renderer(winWidth, winHeight);		 
 
 	bool bIsExit = false;
 		

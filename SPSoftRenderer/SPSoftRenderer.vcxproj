@@ -22,12 +22,14 @@
     <ClCompile Include="Source\Graphics\FrameBuffer.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Math\Color.cpp" />
     <ClCompile Include="Source\Math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\Logger.h" />
     <ClInclude Include="Include\Graphics\FrameBuffer.h" />
     <ClInclude Include="Include\Graphics\Renderer.h" />
+    <ClInclude Include="Include\Math\Color.h" />
     <ClInclude Include="Include\Math\Vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -115,6 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
