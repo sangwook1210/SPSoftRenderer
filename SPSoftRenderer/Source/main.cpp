@@ -1,5 +1,7 @@
 #include <windows.h>
 #include "Core/Logger.h"
+#include "Graphics/Renderer.h"	
+
 #include "Math/Vector2.h"
 
 // 메시지 처리 함수
@@ -9,7 +11,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_DESTROY:
-		// Signal that the app should quit
+		// 프로그램 종료 signal
 		PostQuitMessage(0);
 		break;
 	default:
@@ -36,15 +38,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;
 	}
 
-	// 1024 x 1024 size 윈도우 생성
+	int winWidth = 1024;
+	int winHeight = 1024;
+
+	// 윈도우 생성
 	HWND hWnd = CreateWindowExW(0, WindowClass, Title, WS_POPUP | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 1024, 1024,
+		CW_USEDEFAULT, CW_USEDEFAULT, winWidth, winHeight,
 		nullptr, nullptr, hInstance, nullptr);
 
 	if (hWnd == nullptr)
 	{
 		return -1;
 	}
+
+	// 렌더러 생성
+	Renderer renderer(winWidth, winHeight);
+
 
 	bool bIsExit = false;
 		
@@ -66,6 +75,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		// 루프 시작 시간 기록
 		QueryPerformanceCounter(&startTime);
+
+		renderer.Render(hWnd);
 
 		// 처리할 메시지가 더 이상 없을때 까지 수행
 		while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))

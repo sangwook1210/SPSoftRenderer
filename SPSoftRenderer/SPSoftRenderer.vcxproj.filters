@@ -25,6 +25,12 @@
     <Filter Include="소스 파일\Core">
       <UniqueIdentifier>{5c4ab930-0e5d-499f-8c26-517436a6674c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Graphics">
+      <UniqueIdentifier>{685cf8ec-4cf0-438e-88a5-70231f7335c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Graphics">
+      <UniqueIdentifier>{8bbc76c6-d997-4640-b9b7-ecd6099ed02a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="Source\Math\Vector2.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Renderer.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\FrameBuffer.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Math\Vector2.h">
@@ -40,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="Include\Core\Logger.h">
       <Filter>헤더 파일\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Renderer.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\FrameBuffer.h">
+      <Filter>헤더 파일\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
