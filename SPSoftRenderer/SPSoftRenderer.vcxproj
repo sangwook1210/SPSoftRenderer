@@ -20,17 +20,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Graphics\FrameBuffer.cpp" />
+    <ClCompile Include="Source\Graphics\Rasterizer.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Color.cpp" />
     <ClCompile Include="Source\Math\Vector2.cpp" />
+    <ClCompile Include="Source\Math\Vector3.cpp" />
+    <ClCompile Include="Source\Math\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Component\Component.h" />
+    <ClInclude Include="Include\Component\Transform.h" />
+    <ClInclude Include="Include\Core\GameObject.h" />
     <ClInclude Include="Include\Core\Logger.h" />
     <ClInclude Include="Include\Graphics\FrameBuffer.h" />
+    <ClInclude Include="Include\Graphics\Rasterizer.h" />
     <ClInclude Include="Include\Graphics\Renderer.h" />
+    <ClInclude Include="Include\Graphics\Vertex2D.h" />
     <ClInclude Include="Include\Math\Color.h" />
+    <ClInclude Include="Include\Math\Matrix.h" />
     <ClInclude Include="Include\Math\Vector2.h" />
+    <ClInclude Include="Include\Math\Vector3.h" />
+    <ClInclude Include="Include\Math\Vector4.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

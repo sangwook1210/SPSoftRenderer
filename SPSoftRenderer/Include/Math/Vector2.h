@@ -17,12 +17,12 @@ struct Vector2
 	Vector2 operator*(float scaler)const;
 	Vector2 operator/(float scaler)const;
 
-	void Scale(float scaler);
+	Vector2& Scale(float scaler);
 
 	float Length()const;
 	float LengthSquared()const;
 
-	void Normalize();
+	Vector2& Normalize();
 	Vector2 Normalized()const;
 
 	float Distance(const Vector2& other)const;

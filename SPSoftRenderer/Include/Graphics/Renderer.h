@@ -1,7 +1,8 @@
 #pragma once
 
 #include "windows.h"
-#include "FrameBuffer.h"
+#include "Graphics/FrameBuffer.h"
+#include "Graphics/Rasterizer.h"	
 
 class Renderer
 {
@@ -14,6 +15,7 @@ private:
 	int width, height;
 
 	FrameBuffer frameBuffer;
+	Rasterizer rasterizer;
 
 	void Present(HWND hWnd);
 };

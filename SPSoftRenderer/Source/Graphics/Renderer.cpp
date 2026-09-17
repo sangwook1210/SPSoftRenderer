@@ -2,17 +2,19 @@
 #include "Graphics/Renderer.h"
 
 Renderer::Renderer(int width, int height)
-	:width(width), height(height), frameBuffer(width, height) {}
+	:width(width), height(height),
+    frameBuffer(width, height), rasterizer() {}
 
 void Renderer::Render(HWND hWnd)
 {
     frameBuffer.Clear(Color::White);
 
     // 소프트웨어 렌더링
-    frameBuffer.DrawTriangle(
+    rasterizer.DrawTriangle(
         512, 512, Color::Red,
         150, 200, Color::Green,
-        800, 300, Color::Blue
+        800, 300, Color::Blue,
+        frameBuffer
     );
    /* frameBuffer.DrawTriangle(
         512, 512, 0x00FF0000,

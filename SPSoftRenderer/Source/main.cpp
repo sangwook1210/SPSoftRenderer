@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "Math/Vector2.h"
+#include "Math/Matrix.h"
 
 // 메시지 처리 함수
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -25,12 +26,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-	float a = 0.5f;
-	float b = -0.6f;
-	float c = 1.5f;
-	Logger::Log(std::clamp(a, 0.0f, 1.0f));
-	Logger::Log(std::clamp(b, 0.0f, 1.0f));
-	Logger::Log(std::clamp(c, 0.0f, 1.0f));
+	Vector2 a(1, 2);
+	Vector2 b(3, 4);
+	Vector3 c(6, 7, 8);
+	Matrix2x2 m2(a, b);
+	Matrix3x3 m3;
+	Matrix3x1 m31(c);
+	float arr[3] = { 1.0,2.0,3.0 };
+	Matrix<1, 3> left(arr, sizeof(arr) / sizeof(arr[0]));
+	Matrix<1, 3> left2({ 2.0f, 3.0f, 4.0f });
+
+	Matrix<3, 3> square({
+		1,2,3,
+		4,5,6,
+		7,8,9
+		});
+
+	Matrix<4, 4> test({
+		1, 0, 2, 3,
+		-1, 1, 2, 0,
+		2, 0, 1, 1,
+		0, 2, -2, -1
+		});
+
+	Logger::Log(test);
+	Logger::Log(test.Determinant());
+
 
 	// 윈도우 클래스
 	WCHAR WindowClass[] = L"SPSoftRenderer";

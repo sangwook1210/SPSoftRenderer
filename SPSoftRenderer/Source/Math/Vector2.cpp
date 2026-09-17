@@ -22,10 +22,12 @@ Vector2 Vector2::operator/(float scaler)const
 	return Vector2(x / scaler, y / scaler);
 }
 
-void Vector2::Scale(float scaler)
+Vector2& Vector2::Scale(float scaler)
 {
 	x *= scaler;
 	y *= scaler;
+
+	return *this;
 }
 
 float Vector2::Length()const
@@ -37,11 +39,13 @@ float Vector2::LengthSquared()const
 	return x * x + y * y;
 }
 
-void Vector2::Normalize()
+Vector2& Vector2::Normalize()
 {
 	float length = this->Length();
 	x /= length;
 	y /= length;
+
+	return *this;
 }
 Vector2 Vector2::Normalized()const
 {

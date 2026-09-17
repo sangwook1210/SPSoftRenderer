@@ -31,6 +31,9 @@
     <Filter Include="헤더 파일\Graphics">
       <UniqueIdentifier>{8bbc76c6-d997-4640-b9b7-ecd6099ed02a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Component">
+      <UniqueIdentifier>{88f81f9c-db20-45b7-953d-0f06f38bb12e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -48,6 +51,15 @@
     <ClCompile Include="Source\Math\Color.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Rasterizer.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\Vector3.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\Vector4.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Math\Vector2.h">
@@ -63,6 +75,30 @@
       <Filter>헤더 파일\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Include\Math\Color.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Rasterizer.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Component\Component.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Component\Transform.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Vertex2D.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\GameObject.h">
+      <Filter>헤더 파일\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Math\Vector3.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Math\Matrix.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Math\Vector4.h">
       <Filter>헤더 파일\Math</Filter>
     </ClInclude>
   </ItemGroup>
