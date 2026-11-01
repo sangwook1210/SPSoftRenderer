@@ -34,6 +34,15 @@
     <Filter Include="헤더 파일\Component">
       <UniqueIdentifier>{88f81f9c-db20-45b7-953d-0f06f38bb12e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Component\Renderer">
+      <UniqueIdentifier>{a0514f33-b500-4ba3-875b-3d76f68d9502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component">
+      <UniqueIdentifier>{1656796a-7110-49d2-b742-81a45e040c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component\Renderer">
+      <UniqueIdentifier>{7efc2b87-4aef-40a0-aaff-c1ed14b7b61a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -51,13 +60,34 @@
     <ClCompile Include="Source\Math\Color.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Rasterizer.cpp">
-      <Filter>소스 파일\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Math\Vector3.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Math\Vector4.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\GameObject.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Rasterizer.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Mesh.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component\Renderer\MeshRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component\Renderer\RendererComponent.cpp">
+      <Filter>소스 파일\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RenderQueue.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component\Transform.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\MathUtils.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,7 +116,7 @@
     <ClInclude Include="Include\Component\Transform.h">
       <Filter>헤더 파일\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Graphics\Vertex2D.h">
+    <ClInclude Include="Include\Graphics\Vertex.h">
       <Filter>헤더 파일\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\GameObject.h">
@@ -101,5 +131,25 @@
     <ClInclude Include="Include\Math\Vector4.h">
       <Filter>헤더 파일\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Component\Renderer\RendererComponent.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Component\Renderer\MeshRenderer.h">
+      <Filter>헤더 파일\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\Mesh.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Graphics\RenderQueue.h">
+      <Filter>헤더 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Math\MathUtils.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\Core\GameObject.inl">
+      <Filter>헤더 파일\Core</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,7 +1,12 @@
 #include "Math/Vector4.h"
+#include "Math/Matrix.h"
 
 Vector4::Vector4(float x, float y, float z, float w)
 	:x(x), y(y), z(z), w(w) {
+}
+Vector4::Vector4(Matrix4x1 vectorMatrix)
+	:x(vectorMatrix.values[0][0]), y(vectorMatrix.values[1][0]),
+	z(vectorMatrix.values[2][0]), w(vectorMatrix.values[3][0]) {
 }
 
 #pragma region ∫§≈Õ ø¨ªÍ

@@ -99,16 +99,17 @@ void Rasterizer::DrawTriangle(
 	int y_min = std::min({ y0, y1, y2 });
 	int y_max = std::max({ y0, y1, y2 });
 
+	float areaSize = static_cast<float>(x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
+
 	for (int y = y_min; y <= y_max; y++)
 	{
 		for (int x = x_min; x <= x_max; x++)
 		{
-			float areaSize = static_cast<float>(x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
 			float alpha = (static_cast<float>(x1 - x) * (y2 - y) - (y1 - y) * (x2 - x)) / areaSize;
 			float beta = (static_cast<float>(x2 - x) * (y0 - y) - (y2 - y) * (x0 - x)) / areaSize;
 			float gamma = 1.0f - alpha - beta;
 
-			if (alpha >= 0 && beta >= 0 && gamma >= 0)
+			if (alpha >= 0.0f && beta >= 0.0f && gamma >= 0.0f)
 			{
 				Color color = color0 * alpha + color1 * beta + color2 * gamma;
 				frameBuffer.SetPixel(x, y, color);

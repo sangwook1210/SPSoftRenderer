@@ -142,18 +142,26 @@ struct Matrix
 
 	Matrix(Vector2 colVec)
 	{
-		static_assert(Rows == 2 && Cols == 1);
+		static_assert(Rows <= 4 && Rows >= 2 && Cols == 1);
 
-		values[0][0] = colVec.x;
-		values[1][0] = colVec.y;
+		for (size_t r = 0; r < Rows; r++)
+		{
+			values[r][0] = r == 0 ? colVec.x :
+				r == 1 ? colVec.y :
+				1.0f;
+		}
 	}
 	Matrix(Vector3 colVec)
 	{
-		static_assert(Rows == 3 && Cols == 1);
+		static_assert(Rows <= 4 && Rows >= 3 && Cols == 1);
 
-		values[0][0] = colVec.x;
-		values[1][0] = colVec.y;
-		values[2][0] = colVec.z;
+		for (size_t r = 0; r < Rows; r++)
+		{
+			values[r][0] = r == 0 ? colVec.x :
+				r == 1 ? colVec.y :
+				r == 2 ? colVec.z :
+				1.0f;
+		}
 	}
 	Matrix(Vector4 colVec)
 	{
@@ -167,28 +175,10 @@ struct Matrix
 #pragma endregion
 
 #pragma region ¿¬»ê
-	// Çà·ÄÇÕ
-	template<size_t Rows_r, size_t Cols_r>
-	Matrix<Rows, Cols> operator+(const Matrix<Rows_r, Cols_r>& right)
-	{
-		static_assert((Rows == Rows_r) && (Cols == Cols_r));
-
-		float results[Rows * Cols] = {};
-
-		for (size_t r = 0; r < Rows; r++)
-		{
-			for (size_t c = 0; c < Cols; c++)
-			{
-				results[r * Cols + c] = values[r][c] + right.values[r][c];
-			}
-		}
-
-		return Matrix<Rows, Cols>(results, sizeof(results) / sizeof(results[0]));
-	}
-
+	
 	// Çà·Ä°ö
 	template<size_t Rows_r, size_t Cols_r>
-	Matrix<Rows, Cols_r> operator*(const Matrix<Rows_r, Cols_r>& right)
+	Matrix<Rows, Cols_r> operator*(const Matrix<Rows_r, Cols_r>& right) const
 	{
 		static_assert(Cols == Rows_r);
 
@@ -209,7 +199,25 @@ struct Matrix
 		}
 
 		return Matrix<Rows, Cols_r>(results, sizeof(results) / sizeof(results[0]));
+	}// Çà·ÄÇÕ
+	template<size_t Rows_r, size_t Cols_r>
+	Matrix<Rows, Cols> operator+(const Matrix<Rows_r, Cols_r>& right) const
+	{
+		static_assert((Rows == Rows_r) && (Cols == Cols_r));
+
+		float results[Rows * Cols] = {};
+
+		for (size_t r = 0; r < Rows; r++)
+		{
+			for (size_t c = 0; c < Cols; c++)
+			{
+				results[r * Cols + c] = values[r][c] + right.values[r][c];
+			}
+		}
+
+		return Matrix<Rows, Cols>(results, sizeof(results) / sizeof(results[0]));
 	}
+
 
 	// ½ºÄ®¶ó°ö
 	Matrix<Rows, Cols>& Scale(float scalar)

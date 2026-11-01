@@ -2,6 +2,10 @@
 
 #include <ostream>	
 
+template<size_t Rows, size_t Cols>
+struct Matrix;
+using Matrix4x1 = Matrix<4, 1>;
+
 struct Vector4
 {
 	float x = 0;
@@ -11,6 +15,7 @@ struct Vector4
 
 	Vector4() {}
 	Vector4(float x, float y, float z, float w);
+	Vector4(Matrix4x1 vectorMatrix);
 
 #pragma region ∫§≈Õ ø¨ªÍ
 

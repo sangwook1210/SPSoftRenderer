@@ -3,37 +3,64 @@
 
 Renderer::Renderer(int width, int height)
 	:width(width), height(height),
-    frameBuffer(width, height), rasterizer() {}
-
-void Renderer::Render(HWND hWnd)
+    frameBuffer(width, height), rasterizer() 
 {
+    bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bitmapInfo.bmiHeader.biWidth = width;
+    bitmapInfo.bmiHeader.biHeight = -height;
+    bitmapInfo.bmiHeader.biPlanes = 1;
+    bitmapInfo.bmiHeader.biBitCount = 32;
+    bitmapInfo.bmiHeader.biCompression = BI_RGB;
+}
+
+void Renderer::Render(HWND hWnd, std::vector<GameObject*>& gameObjects)
+{
+    renderQueue.Clear();
     frameBuffer.Clear(Color::White);
 
-    // 소프트웨어 렌더링
-    rasterizer.DrawTriangle(
-        512, 512, Color::Red,
-        150, 200, Color::Green,
-        800, 300, Color::Blue,
-        frameBuffer
-    );
-   /* frameBuffer.DrawTriangle(
-        512, 512, 0x00FF0000,
-        150, 200, 0x0000FF00,
-        800, 300, 0x000000FF
-    );*/
-    
-    /* 
-    // test
-    frameBuffer.SetPixel(511, 511, 0x00000000);
-    frameBuffer.SetPixel(512, 511, 0x00000000);
-    frameBuffer.SetPixel(513, 511, 0x00000000);
-    frameBuffer.SetPixel(511, 512, 0x00000000);
-    frameBuffer.SetPixel(512, 512, 0x00000000);
-    frameBuffer.SetPixel(513, 512, 0x00000000);
-    frameBuffer.SetPixel(511, 513, 0x00000000);
-    frameBuffer.SetPixel(512, 513, 0x00000000);
-    frameBuffer.SetPixel(513, 513, 0x00000000);
-    */
+    // 게임오브젝트 순회
+    for (std::vector<GameObject*>::iterator gameObjectIter = gameObjects.begin();
+        gameObjectIter != gameObjects.end(); ++gameObjectIter)
+    {
+        if ((*gameObjectIter) == nullptr)
+            continue;
+
+        RendererComponent* rendererComponent =
+            (*gameObjectIter)->GetComponent<RendererComponent>();
+
+        if (rendererComponent == nullptr)
+            continue;
+
+        rendererComponent->Submit(renderQueue);
+
+    }
+
+    // 오브젝트별 렌더링
+    for (std::vector<DrawCommand>::const_iterator command = renderQueue.GetCommands().begin();
+        command != renderQueue.GetCommands().end(); ++command)
+    {
+        for (size_t i = 0; i + 2 < command->mesh->GetIndices().size(); i += 3)
+        {
+            int a = command->mesh->GetIndices()[i];
+            int b = command->mesh->GetIndices()[i + 1];
+            int c = command->mesh->GetIndices()[i + 2];
+
+            Vertex v1 = command->mesh->GetVertex(a);
+            Vertex v2 = command->mesh->GetVertex(b);
+            Vertex v3 = command->mesh->GetVertex(c);
+
+            Vector4 v1_position = Vector4((command->worldMatrix) * Matrix4x1(v1.position));
+            Vector4 v2_position = Vector4((command->worldMatrix) * Matrix4x1(v2.position));
+            Vector4 v3_position = Vector4((command->worldMatrix) * Matrix4x1(v3.position));
+
+            rasterizer.DrawTriangle(
+                v1_position.y, v1_position.z, v1.color,
+                v2_position.y, v2_position.z, v2.color,
+                v3_position.y, v3_position.z, v3.color,
+                frameBuffer
+            );
+        }
+    }
 
     Present(hWnd);
 }
@@ -41,14 +68,6 @@ void Renderer::Render(HWND hWnd)
 void Renderer::Present(HWND hWnd)
 {
     HDC hdc = GetDC(hWnd);
-
-    BITMAPINFO bitmapInfo = {};
-    bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bitmapInfo.bmiHeader.biWidth = frameBuffer.GetWidth();
-    bitmapInfo.bmiHeader.biHeight = -frameBuffer.GetHeight();   // top-down 데이터를 의미
-    bitmapInfo.bmiHeader.biPlanes = 1;
-    bitmapInfo.bmiHeader.biBitCount = 32;
-    bitmapInfo.bmiHeader.biCompression = BI_RGB;    // 0xAARRGGBB의 AA 부분은 무시됨
 
     StretchDIBits(
         hdc,

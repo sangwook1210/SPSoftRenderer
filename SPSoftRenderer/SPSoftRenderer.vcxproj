@@ -19,29 +19,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Component\Renderer\MeshRenderer.cpp" />
+    <ClCompile Include="Source\Component\Renderer\RendererComponent.cpp" />
+    <ClCompile Include="Source\Component\Transform.cpp" />
+    <ClCompile Include="Source\Core\GameObject.cpp" />
     <ClCompile Include="Source\Graphics\FrameBuffer.cpp" />
+    <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Rasterizer.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
+    <ClCompile Include="Source\Graphics\RenderQueue.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Color.cpp" />
+    <ClCompile Include="Source\Math\MathUtils.cpp" />
     <ClCompile Include="Source\Math\Vector2.cpp" />
     <ClCompile Include="Source\Math\Vector3.cpp" />
     <ClCompile Include="Source\Math\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Component\Component.h" />
+    <ClInclude Include="Include\Component\Renderer\MeshRenderer.h" />
+    <ClInclude Include="Include\Component\Renderer\RendererComponent.h" />
     <ClInclude Include="Include\Component\Transform.h" />
     <ClInclude Include="Include\Core\GameObject.h" />
     <ClInclude Include="Include\Core\Logger.h" />
     <ClInclude Include="Include\Graphics\FrameBuffer.h" />
+    <ClInclude Include="Include\Graphics\Mesh.h" />
     <ClInclude Include="Include\Graphics\Rasterizer.h" />
     <ClInclude Include="Include\Graphics\Renderer.h" />
-    <ClInclude Include="Include\Graphics\Vertex2D.h" />
+    <ClInclude Include="Include\Graphics\RenderQueue.h" />
+    <ClInclude Include="Include\Graphics\Vertex.h" />
     <ClInclude Include="Include\Math\Color.h" />
+    <ClInclude Include="Include\Math\MathUtils.h" />
     <ClInclude Include="Include\Math\Matrix.h" />
     <ClInclude Include="Include\Math\Vector2.h" />
     <ClInclude Include="Include\Math\Vector3.h" />
     <ClInclude Include="Include\Math\Vector4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\Core\GameObject.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
